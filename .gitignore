@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+
+# 虚拟环境
+venv/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# 项目敏感信息
+.env
+*.log
+
+# 向量库持久化（首次运行会自动生成，按需提交）
+chroma_db/
+chroma_db/
+*.log
+.fuse_hidden*
