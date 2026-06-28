@@ -23,6 +23,7 @@
 
 **技术栈**：
 - **后端框架**：FastAPI（异步、高性能、自动 Swagger 文档）
+- **前端框架**：Streamlit（Python 一把梭，5 分钟出 UI，零前端代码）
 - **向量数据库**：ChromaDB（嵌入式、持久化、支持 HNSW 索引）
 - **Embedding 模型**：all-MiniLM-L6-v2（ONNX 推理，384 维，无 GPU 也能跑）
 - **大语言模型**：DeepSeek-V3（API 调用，OpenAI 兼容协议）
@@ -60,7 +61,7 @@ nano .env  # 或用任何编辑器
 > ⚠️ **安全提示**：绝对不要把 API Key 硬编码到代码里、commit 到 git。  
 > `.env` 文件已经在 `.gitignore` 中，不会被提交。
 
-### 3. 启动服务
+### 3. 启动后端服务
 
 ```bash
 python main.py
@@ -70,7 +71,21 @@ python main.py
 - API 服务：`http://localhost:8000`
 - Swagger 文档：`http://localhost:8000/docs`
 
-### 4. 测试
+### 4. 启动前端（可选）
+
+```bash
+streamlit run app.py
+```
+
+启动后浏览器打开：`http://localhost:8501`
+
+前端功能：
+- 🎯 4 个一键示例问题（古井系列/应对嫌贵/介绍历史/宴席推荐）
+- ⚙️ 侧边栏调节 Top-K、显示相似度分数
+- 📖 答案区 + 折叠展开的检索片段
+- 🟢 实时显示后端服务状态、知识库条数、Embedding 模型
+
+### 5. 测试
 
 ```bash
 # 方式1：curl
@@ -121,6 +136,7 @@ python tests/test_api.py
 
 ```
 RAG项目/
+├── app.py                 # Streamlit 前端
 ├── main.py                # FastAPI 入口
 ├── config.py              # 配置（环境变量）
 ├── knowledge_base.py      # 销售知识库内容
@@ -172,8 +188,9 @@ self.embedding_fn = embedding_functions.OpenAIEmbeddingFunction(
 
 ## 💼 简历项目描述参考
 
-> **智能销售助手 RAG 系统** | Python / FastAPI / ChromaDB / DeepSeek  
+> **智能销售助手 RAG 系统** | Python / FastAPI / Streamlit / ChromaDB / DeepSeek  
 > - 基于 RAG 架构搭建销售知识问答系统，沉淀白酒销售实战经验  
+> - FastAPI 提供后端 API（/ask、/knowledge、/reload）+ Streamlit 出前端 UI，全程零前端代码  
 > - 用 ChromaDB + all-MiniLM-L6-v2 实现语义检索，相关度比 TF-IDF 提升 76%  
 > - 集成 DeepSeek-V3 大模型，结合检索结果生成专业销售建议（兜底降级到纯检索）  
 > - 模块化设计（检索/LLM/向量库解耦），单测覆盖核心接口
@@ -198,14 +215,17 @@ self.embedding_fn = embedding_functions.OpenAIEmbeddingFunction(
 6. **chunk_size 和 overlap 怎么定？**  
    → 看场景。短问答 200/40，长文档 500/100。overlap 保证跨段语义不丢。
 
+7. **前端为什么用 Streamlit 不用 Vue3 / React？**  
+   → 个人/小团队项目优先 Streamlit：纯 Python、零前端代码、5 分钟出 UI、内置组件（slider/expander/spinner）够用。Vue3/React 适合多人协作的复杂产品，但要多学一套 JS 生态。前后端用 REST 解耦，将来要换 Vue3 只改前端，后端 API 不动。
+
 ## 📈 后续优化方向
 
+- [x] ~~写前端页面（Vue3 / Streamlit）~~ ✅ v4.1 已完成 Streamlit 前端
 - [ ] 加 LangChain Agent，让 AI 自主决定要不要检索（ReAct 模式）
 - [ ] 支持多轮对话（保留上下文）
 - [ ] 知识库热更新（不重启服务）
 - [ ] 加流式输出（SSE）
 - [ ] 接入 BGE / M3E 等中文专用 Embedding
-- [ ] 写前端页面（Vue3 / Streamlit）
 
 ## 📄 License
 
