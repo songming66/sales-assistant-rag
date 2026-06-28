@@ -110,13 +110,12 @@ python tests/test_api.py
 
 ## 🛠️ 常见问题排查
 
-**Q1: `python main.py` 启动后直接退出，没看到 `🚀 启动服务`？**  
-A: 大概率是没建 `.env` 或没填 `DEEPSEEK_API_KEY`。
-```cmd
-:: Windows 验证一下
-python -c "from config import DEEPSEEK_API_KEY; print(repr(DEEPSEEK_API_KEY))"
+**Q1: `python main.py` 启动后报 `ValueError: DEEPSEEK_API_KEY 未设置`，但我 .env 已经填了？**  
+A: 99% 是缺 `python-dotenv` 库。`os.getenv()` **不会自动读 .env 文件**，必须有 `python-dotenv` + `load_dotenv()`。
+```bash
+pip install python-dotenv
 ```
-输出 `''` 就是没设；输出 `'sk-xxx'` 就是有，但还有别的问题，把完整 traceback 发出来。
+项目已用 `load_dotenv()` 自动加载，缺库就会报这个错。
 
 **Q2: `TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'`？**  
 A: Python 版本 < 3.10，不支持 `str | None` 语法。两种解决：

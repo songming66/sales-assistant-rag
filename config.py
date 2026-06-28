@@ -5,6 +5,11 @@
 """
 from __future__ import annotations
 import os
+from dotenv import load_dotenv
+
+# 自动加载 .env 文件（如果存在）
+# 优先级：系统环境变量 > .env 文件
+load_dotenv()
 
 # DeepSeek
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")  # 必须从环境变量读取，禁止硬编码
