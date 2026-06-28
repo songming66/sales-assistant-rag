@@ -4,7 +4,7 @@ FastAPI 主入口
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from config import DEEPSEEK_MODEL, APP_HOST, APP_PORT
+from config import DEEPSEEK_MODEL, APP_HOST, APP_PORT, validate
 from knowledge_base import SALES_KNOWLEDGE, split_knowledge
 from vector_store import VectorStore
 from llm import call_deepseek, fallback_answer
