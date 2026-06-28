@@ -2,6 +2,7 @@
 Chroma 向量库封装
 负责：初始化、灌入知识、语义检索
 """
+from __future__ import annotations
 import chromadb
 from chromadb.utils import embedding_functions
 

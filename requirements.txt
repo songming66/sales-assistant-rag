@@ -4,3 +4,6 @@ pydantic>=2.6.0
 requests>=2.31.0
 chromadb>=1.5.0
 streamlit>=1.30.0
+
+# Python 3.9+ 即可（项目用 from __future__ import annotations 兼容了 PEP 604）
+# 推荐 3.10+ 体验更完整

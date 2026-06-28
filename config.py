@@ -3,6 +3,7 @@
 请设置环境变量 DEEPSEEK_API_KEY，或复制 .env.example 为 .env 后填入
 绝对不要把 API Key 硬编码到代码里或提交到 Git
 """
+from __future__ import annotations
 import os
 
 # DeepSeek

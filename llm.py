@@ -1,6 +1,7 @@
 """
 DeepSeek LLM 调用 + Fallback
 """
+from __future__ import annotations
 import requests
 
 from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL, DEEPSEEK_TIMEOUT

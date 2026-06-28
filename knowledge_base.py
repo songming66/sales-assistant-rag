@@ -2,6 +2,7 @@
 销售知识库 - 集中管理，方便扩展
 未来要加新知识直接在这里追加，重启服务即可生效
 """
+from __future__ import annotations
 
 SALES_KNOWLEDGE = """
 白酒销售核心话术

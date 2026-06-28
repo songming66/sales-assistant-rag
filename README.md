@@ -108,6 +108,33 @@ curl -X POST http://localhost:8000/ask \
 python tests/test_api.py
 ```
 
+## 🛠️ 常见问题排查
+
+**Q1: `python main.py` 启动后直接退出，没看到 `🚀 启动服务`？**  
+A: 大概率是没建 `.env` 或没填 `DEEPSEEK_API_KEY`。
+```cmd
+:: Windows 验证一下
+python -c "from config import DEEPSEEK_API_KEY; print(repr(DEEPSEEK_API_KEY))"
+```
+输出 `''` 就是没设；输出 `'sk-xxx'` 就是有，但还有别的问题，把完整 traceback 发出来。
+
+**Q2: `TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'`？**  
+A: Python 版本 < 3.10，不支持 `str | None` 语法。两种解决：
+- 升级 Python 到 3.10+（推荐）
+- 项目已用 `from __future__ import annotations` 兼容，重新 `git pull` 即可
+
+**Q3: 第一次跑 streamlit 页面一直转圈？**  
+A: 在下载 all-MiniLM-L6-v2 模型（79MB），看 streamlit.log 进度。第二次启动秒开。
+
+**Q4: 浏览器打开 streamlit 显示 `🔴 后端未启动`？**  
+A: 后端 main.py 没跑或端口被占。检查 8000 端口：
+```bash
+# Linux/macOS
+lsof -i :8000
+# Windows
+netstat -ano | findstr :8000
+```
+
 ## 📚 API 文档
 
 ### `POST /ask` 销售问题问答
