@@ -49,14 +49,25 @@ pip install -r requirements.txt
 
 ### 2. 配置 API Key
 
+**Linux / macOS：**
 ```bash
-# 复制环境变量模板
 cp .env.example .env
-
-# 编辑 .env，填入你的 DeepSeek API Key
-# 申请地址：https://platform.deepseek.com/
-nano .env  # 或用任何编辑器
+nano .env  # 填入你的 DeepSeek API Key
 ```
+
+**Windows (cmd)：**
+```cmd
+copy .env.example .env
+notepad .env
+```
+
+**Windows (PowerShell)：**
+```powershell
+Copy-Item .env.example .env
+notepad .env
+```
+
+填入你从 [platform.deepseek.com](https://platform.deepseek.com/api_keys) 申请的 Key。
 
 > ⚠️ **安全提示**：绝对不要把 API Key 硬编码到代码里、commit 到 git。  
 > `.env` 文件已经在 `.gitignore` 中，不会被提交。
