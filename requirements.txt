@@ -1,10 +1,29 @@
+# 核心框架
 fastapi>=0.110.0
 uvicorn[standard]>=0.27.0
 pydantic>=2.6.0
+
+# LLM / LangChain（v5.0 新增）
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-openai>=0.1.0  # 兼容模式调用 DeepSeek
+
+# 向量库
+chromadb>=0.5.0
+sentence-transformers>=2.7.0  # 备用 embedding（Chroma 默认用 ONNX）
+
+# HTTP / 工具
 requests>=2.31.0
-chromadb>=1.5.0
-streamlit>=1.30.0
 python-dotenv>=1.0.0
 
-# Python 3.9+ 即可（项目用 from __future__ import annotations 兼容了 PEP 604）
-# 推荐 3.10+ 体验更完整
+# 前端
+streamlit>=1.30.0
+
+# 数据处理（v5.0 新增）
+pandas>=2.0.0
+
+# 部署 / 评估
+# Streamlit Cloud 需要 streamlit、chromadb、sentence-transformers 等
+# 详见 packages.txt
+
+# Python >= 3.9，推荐 3.10+（3.10+ 才支持 X | Y 类型注解）

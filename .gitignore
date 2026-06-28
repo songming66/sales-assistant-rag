@@ -1,30 +1,36 @@
+# 环境变量
+.env
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-*.egg-info/
-.pytest_cache/
-
-# 虚拟环境
+.venv/
 venv/
 env/
-.venv/
+
+# 依赖
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# 向量库（不要提交，可重建）
+chroma_db/
+chroma/
+
+# 日志
+*.log
+server.log
+streamlit.log
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
-*.swo
 .DS_Store
 
-# 项目敏感信息
-.env
-*.log
-
-# 向量库持久化（首次运行会自动生成，按需提交）
-chroma_db/
-chroma_db/
-*.log
-.fuse_hidden*
+# 系统
+Thumbs.db

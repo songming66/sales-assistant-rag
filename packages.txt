@@ -1,0 +1,6 @@
+# Streamlit Cloud / Hugging Face Spaces 部署用的系统依赖
+# 这里填 apt-get install 需要的包
+
+# sentence-transformers 需要这个
+build-essential
+g++
